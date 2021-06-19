@@ -7,13 +7,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 class Layer implements Serializable {
     private final static double WEIGHT_INIT_LIMIT = 0.05d;
+    private final int neuronCount;
+    private final int weightCount;
+    private final double learningFactor;
     private double[][] weights;
     private double[][] weightDeltas;
     private double[] outputs;
     private double[] inputs;
-    private final int neuronCount;
-    private final int weightCount;
-    private final double learningFactor;
 
     Layer(int neuronCount, int weightCount, double learningFactor) {
         this.learningFactor = learningFactor;
@@ -93,7 +93,7 @@ class Layer implements Serializable {
     }
 
     private double dropOut(double x) {
-        if(ThreadLocalRandom.current().nextBoolean()) {
+        if (ThreadLocalRandom.current().nextBoolean()) {
             return x;
         }
         return 0d;
